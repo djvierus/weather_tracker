@@ -27,11 +27,12 @@ try:
                 response= urlopen(url_encode)
                 data_json = json.loads(response.read(), object_hook=lambda d: SimpleNamespace(**d))
                 now = time.strftime('%Y-%m-%d %H:%M:%S')
+                tz_info = datetime.now().astimezone().tzinfo
                 print ("{0} | The current temperature is {1}F". format(now, data_json.current.temp_f))
                 try:
-                    sql.execute(("INSERT INTO weather_history(id, timestamp, temperature, source, city, state)\
-                    VALUES (NEXTVAL('weather_hist_seq'),%(timestamp)s,%(temperature)s,%(source)s,%(city)s,%(state)s)"), \
-                    {'timestamp': now,'temperature': data_json.current.temp_f,'source': cnf.source, 'city' : cnf.location[0,loc], 'state': cnf.location[1,loc] })
+                    sql.execute(("INSERT INTO weather_history(id, timestamp, timezone, temperature, source, city, state)\
+                    VALUES (NEXTVAL('weather_hist_seq'),%(timestamp)s,%(timezone)s,%(temperature)s,%(source)s,%(city)s,%(state)s)"), \
+                    {'timestamp': now,'timezone': str(tz_info),'temperature': data_json.current.temp_f,'source': cnf.source, 'city' : cnf.location[0,loc], 'state': cnf.location[1,loc] })
                     conn.commit()
                 except Exception as error:
                     print("An exception has occured while writing to the databse")
