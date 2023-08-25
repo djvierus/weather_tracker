@@ -5,7 +5,6 @@
 -- Dumped from database version 14.9 (Ubuntu 14.9-0ubuntu0.22.04.1)
 -- Dumped by pg_dump version 15.3
 
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -18,7 +17,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3317 (class 1262 OID 16441)
 -- Name: weather; Type: DATABASE; Schema: -; Owner: -
 --
 
@@ -39,7 +37,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 4 (class 2615 OID 2200)
 -- Name: public; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -47,7 +44,6 @@ SET row_security = off;
 
 
 --
--- TOC entry 210 (class 1259 OID 16447)
 -- Name: weather_hist_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -62,7 +58,6 @@ CREATE SEQUENCE public.weather_hist_seq
 SET default_table_access_method = heap;
 
 --
--- TOC entry 209 (class 1259 OID 16442)
 -- Name: weather_history; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -72,16 +67,20 @@ CREATE TABLE public.weather_history (
     temperature bigint NOT NULL,
     source character varying(75) NOT NULL,
     city character varying(75),
-    state character varying(75)
+    state character varying(75),
+    timezone character varying(75)
 );
 
 
 --
--- TOC entry 3172 (class 2606 OID 16446)
 -- Name: weather_history weather_history_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.weather_history
     ADD CONSTRAINT weather_history_pkey PRIMARY KEY (id);
 
+
+--
+-- PostgreSQL database dump complete
+--
 
