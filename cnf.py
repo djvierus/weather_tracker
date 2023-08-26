@@ -1,5 +1,4 @@
-from urllib.request import urlopen
-import urllib.parse, json, numpy as np, array as arr
+import json, numpy as np
 
 json_file = open('appsettings.json')
 json_settings = json.load(json_file)
