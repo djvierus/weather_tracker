@@ -68,7 +68,7 @@ CREATE TABLE public.weather_history (
     source character varying(75) NOT NULL,
     city character varying(75),
     state character varying(75),
-    timezone character varying(75)
+    timezone character varying(75) NOT NULL
 );
 
 
